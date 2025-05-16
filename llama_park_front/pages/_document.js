@@ -7,6 +7,10 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+          rel="stylesheet"
+        />
           <link rel="icon" type="image/ico" href={`${process.env.BASE_PATH}/favicon.ico`} />
           <LidoUIHead />
         </Head>

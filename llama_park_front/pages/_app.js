@@ -37,10 +37,6 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-          rel="stylesheet"
-        />
         <title>Llama Park</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <meta
