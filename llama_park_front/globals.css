@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #000; /* 可选：设置背景色 */
+  color: #fff; /* 可选：设置文本颜色 */
+  margin: 0; /* 可选：去掉默认边距 */
+  padding: 0; /* 可选：去掉默认内边距 */
+}

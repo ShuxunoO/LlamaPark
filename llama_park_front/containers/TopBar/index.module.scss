@@ -1,0 +1,125 @@
+.topBar {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.title {
+  display: flex;
+  padding: 0 2rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+  @media screen and (max-width: 640px) {
+    padding: 0 1rem;
+  }
+}
+
+.back {
+  width: 36px;
+  height: 36px;
+  padding-top: 7px;
+  margin-left: 10px;
+  text-align: center;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(15, 20, 25, .1);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+  }
+}
+
+.searchBox {
+  width: 25%;
+  height: 36px;
+  background: #242A2D;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px;
+  padding-left: 8px;
+
+  .searchIcon {
+    display: block;
+    border: 0;
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
+  }
+  .search {
+    // font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #A4A4A4;
+    letter-spacing: 0;
+    line-height: 22px;
+    font-weight: 400;
+  }
+  
+}
+.twitterWrap{
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 48px;
+}
+
+.twitterWrap img{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.twitterWrap div{
+  font-size: 16px;
+}
+.walletBtn {
+  width: 162px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+
+  cursor: pointer;
+  background: #f5f5f5;
+  font-size: 14px;
+  color: #151515;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 22px;
+  font-weight: 400;
+  border-radius: 12px;
+
+  // &:hover{
+  //   background: #555758;
+  // }
+
+  .walletIcon {
+    width: 26px;
+    height: 26px;
+    margin-right: 8px;
+    @media screen and (max-width: 768px) {
+      margin: 0;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    width: auto;
+    padding: 20px 10px;
+    background: transparent;
+    border: none;
+  }
+}
+.rightTop {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,30 @@
+$vm_base: 2880;
+
+@function vw($px) {
+    @return ($px / $vm_base) * 100vw;
+}
+
+.mainCon {
+    display: grid;
+    grid-template-columns: 100px auto;
+
+    // justify-content: flex-start;
+    @media screen and (max-width: 768px) {
+        display: block;
+    }
+}
+
+.tabIcon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 16px;
+
+    @media screen and (max-width: 768px) {
+        margin-right: 0px;
+    }
+}
+
+.layPading {
+    padding: 20px;
+}

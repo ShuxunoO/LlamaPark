@@ -1,0 +1,33 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.error {
+  font-size: 15px;
+  color: #536471;
+
+}
+
+.retryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94px;
+  height: 36px;
+  padding: 0 16px;
+  margin: 20px auto 0;
+  background: #1d9bf0;
+  border-radius: 9999px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 700;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+  }
+}

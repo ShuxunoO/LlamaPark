@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: 1px;
+}
+html {
+  min-height: 100vh;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+strong,
+b {
+  font-weight: 700;
+}
+
+body {
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  font-size: 0.875rem;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #151515;
+  background: #fff;
+  .main {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+button {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5 !important;
+  }
+}
+
+.MuiSwitch-root {
+  width: 38px !important;
+  height: 22px !important;
+  padding: 0 !important;
+
+  .MuiSwitch-switchBase {
+    padding: 0;
+    margin: 2px;
+    transition-duration: 200ms;
+
+    &.Mui-checked {
+      color: #fff;
+      transform: translateX(16px);
+
+      &+.MuiSwitch-track {
+        background-color: rgba($color: #07A658, $alpha: 1);
+      }
+    }
+
+    &.Mui-disabled {
+      color: #bdbdbd;
+
+      &+.MuiSwitch-track {
+        background-color: rgba($color: #000, $alpha: 0.12);
+        cursor: not-allowed;
+      }
+    }
+
+    .MuiSwitch-thumb {
+      width: 18px;
+      height: 18px;
+    }
+
+  }
+
+  .MuiSwitch-track {
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 11px;
+    background-color: #E9E9EA;
+    opacity: 1 !important;
+  }
+
+}
+
+
+.indeterminate {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  animation: circular-rotate 1.4s linear infinite;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    color: #07A658;
+
+    circle {
+      stroke-dasharray: 80px, 200px;
+      stroke-dashoffset: 0px;
+      animation: loadingCircle 1.4s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes circular-rotate {
+  0% {
+    transform-origin: 50% 50%;
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingCircle {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0px;
+  }
+
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -125px;
+  }
+}
+
+:root {
+  --lido-color-textSecondary: #3F6870;
+  --lido-color-text: #142528;
+  --lido-color-primary: #00a3ff;
+  --lido-color-primaryHover: #00a3ff;
+}
+
+.MuiDrawer-modal {
+  z-index: 85 !important;
+}
+
+.MuiDrawer-paper {
+  position: relative;
+  min-width: 240px;
+  padding: 32px 24px;
+}
+
+
+
+.MuiSlider-root {
+  height: 4px !important;
+  color: #07a658 !important;
+
+  &.MuiSlider-root.Mui-disabled {
+    color: #bdbdbd !important;
+    cursor: not-allowed;
+  }
+
+  .MuiSlider-rail,
+  .MuiSlider-track {
+    height: 4px !important;
+    border-radius: 2px !important;
+  }
+
+
+  .MuiSlider-thumb {
+    width: 16px !important;
+    height: 16px !important;
+    margin-top: -6px !important;
+  }
+
+  .MuiSlider-valueLabel {
+    left: -50% !important;
+  }
+}
+
+
+.toastIfy {
+  padding: 10px 16px !important;
+  background: #72c6ff !important;
+  color: #fff !important;
+  box-shadow: 0px 8px 24px 0px #00000014;
+
+  .toastMain {
+    padding-left: 30px;
+    padding-right: 50px;
+
+    .toastSvg {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 20px;
+      height: 20px;
+    }
+
+    .toastTitle {
+      height: 22px;
+      line-height: 22px;
+      margin-top: 0px;
+      margin-bottom: 8px;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .toastHashTip {
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .toastHash {
+      font-size: 14px;
+      color: #005be2;
+      text-decoration: none;
+
+      &:hover {
+        color: #005be2;
+      }
+    }
+  }
+
+
+
+  button {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    padding: 4px 0 0 8px;
+    border: none;
+    text-align: center;
+    color: #fff;
+
+    svg {
+      fill: currentColor;
+      width: 14px;
+      height: 16px;
+    }
+  }
+}
+
+.svgBtn {
+  position: relative;
+  padding: 0 8px;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    bottom: -24px;
+    background: #605f5f;
+    padding: 0 4px;
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 2px;
+    white-space: pre;
+  }
+
+  svg {
+    width: 23px;
+    height: 23px;
+    vertical-align: middle;
+  }
+
+  &:hover {
+    color: #1d9bf0;
+  }
+}
+
+.infiniteScroll {
+  overflow: visible;
+}

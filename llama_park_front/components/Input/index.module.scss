@@ -1,0 +1,33 @@
+.root {
+  &>span {
+    border-color: var(--lido-color-borderHover);
+
+    &:hover {
+      border-color: var(--lido-color-borderActive);
+    }
+  }
+
+  span {
+    &:nth-child(2) {
+      height: 20px;
+      padding: 0 0 0 4px !important;
+      line-height: 20px;
+      margin-top: 0px;
+      background: transparent;
+      color: var(--lido-color-error);
+      box-shadow: none;
+    }
+  }
+
+  input {
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+  }
+}
+
+.error {
+  &>span {
+    border-color: var(--lido-color-error) !important;
+  }
+}
