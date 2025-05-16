@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     height: "100%",
     lineHeight: "38px",
-    fontFamily: "Helvetica-Bold",
+    // fontFamily: "Helvetica-Bold",
     fontSize: "20px",
     color: "#151515",
     letterSpacing: 0,

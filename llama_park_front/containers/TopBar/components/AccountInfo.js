@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   box: {
     // background: '#F4F6F8',
     borderRadius: '10px',
-    padding: '20px',
+    // padding: '20px',
     position: 'relative',
     overflow: 'hidden',
     paddingTop: '4px'

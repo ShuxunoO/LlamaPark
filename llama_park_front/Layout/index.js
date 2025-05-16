@@ -39,7 +39,7 @@ function Layout({ children, className }) {
 
 
   return (
-    <main className={`main ${className || ''}`}>
+    <main className={`main bg-blue-500 ${className || ''}`}>
       <TopBar />
       <div className='w-screen'>
         {children}
