@@ -9,130 +9,188 @@ import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { utils } from "ethers";
 import { notify } from "@utils/msgNotify";
 import { Button } from "@lidofinance/lido-ui";
-import styles from "./index.module.scss"; 
+import MintModal from "./MintModal";
 
-const Home = () => {
-  const [ownedLlamas, setOwnedLlamas] = useState([]);
-  const [teamLlamas, setTeamLlamas] = useState([]);
-  const { address, isConnected } = useWallet();
-  const { openConnectModal } = useConnectModal();
+const useContractData = (address, active) => {
+  const [hasMinted, setHasMinted] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [salePrice, setSalePrice] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const fetchSalePrice = async () => {
+    try {
+      const res = await readContract({
+        ...LlamaParkContractConfig,
+        functionName: "SalePrice",
+        args: [],
+      });
+      setSalePrice(res);
+    } catch (error) {
+      console.error("Error fetching sale price:", error);
+    }
+  };
 
-  // Mock llama data - in a real app, you would fetch this from your contract
-  const mockLlamas = [
-    { id: 1, name: "Basic Llama", image: "@images/llama_1.png", color: "beige" },
-    { id: 2, name: "Cool Llama", image: "/images/llama_2.png", color: "purple", accessory: "sunglasses" },
-    { id: 3, name: "Brown Llama", image: "/images/llama_3.png", color: "brown" },
-    { id: 4, name: "Fancy Llama", image: "/images/llama_4.png", color: "white", accessory: "hat" },
-    { id: 5, name: "Smoker Llama", image: "/images/llama_5.png", color: "gray", accessory: "pipe" },
-    { id: 6, name: "Golden Llama", image: "/images/llama_6.png", color: "gold" },
-    { id: 7, name: "Captain Llama", image: "/images/llama_7.png", color: "cream", accessory: "hat" },
-    { id: 8, name: "Red Llama", image: "/images/llama_8.png", color: "red" },
-  ];
+  const fetchDiscountAmount = async () => {
+    try {
+      const res = await readContract({
+        ...LlamaParkContractConfig,
+        functionName: "DiscountAmount",
+        args: [],
+      });
+      setDiscountAmount(res);
+    } catch (error) {
+      console.error("Error fetching discount amount:", error);
+    }
+  };
+
+  const checkHasMinted = async () => {
+    try {
+      const res = await readContract({
+        ...LlamaParkContractConfig,
+        functionName: "tokenIdOfMinter",
+        args: [address],
+      });
+      setHasMinted(res.toString() !== "0");
+    } catch (error) {
+      console.error("Error fetching tokenIdOfMinter:", error);
+    }
+  };
+
+  const fetchPaused = async () => {
+    try {
+      const res = await readContract({
+        ...LlamaParkContractConfig,
+        functionName: "paused",
+        args: [],
+      });
+      setIsPaused(res);
+    } catch (error) {
+      console.error("Error fetching paused:", error);
+    }
+  };
 
   useEffect(() => {
-    // In a real app, you would fetch the user's NFTs from the contract
-    if (isConnected) {
-      setOwnedLlamas(mockLlamas);
-    } else {
-      setOwnedLlamas([]);
+    if (active) {
+      // check if user has minted
+      checkHasMinted();
+      // check if mint is paused
+      fetchPaused();
+      // fetch sale price
+      fetchSalePrice();
+      // fetch discount amount
+      fetchDiscountAmount();
     }
-  }, [isConnected]);
+  }, [address, active]);
 
-  const handleDragStart = (e, llama) => {
-    e.dataTransfer.setData("llamaId", llama.id);
+  return {
+    hasMinted,
+    salePrice,
+    discountAmount,
+    isPaused,
   };
+};
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
+const Mint = () => {
+  // if wallet is connected, fetch user's mint status
+  const { active, address } = useWallet();
+  const { openConnectModal } = useConnectModal();
+  // minting state
+  const [minting, setMinting] = useState(false);
+  // modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // contract data
+  const { hasMinted, salePrice, isPaused, discountAmount } =
+    useContractData(address, active);
+  // discountPrice is salePrice - discountAmount
+  const discountPrice = BigInt(salePrice) - BigInt(discountAmount);
+  // display price by eth
+  const displayPrice = utils.formatEther(salePrice);
+  const displayDiscountPrice = utils.formatEther(discountPrice);
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const llamaId = parseInt(e.dataTransfer.getData("llamaId"));
-    const llama = ownedLlamas.find(l => l.id === llamaId);
-    
-    if (llama && !teamLlamas.some(l => l.id === llamaId)) {
-      setTeamLlamas([...teamLlamas, llama]);
+  const mint = async (address) => {
+    setMinting(true);
+    const actualPrice =
+      address && address !== "0x0000000000000000000000000000000000000000"
+        ? discountPrice // 90% of price
+        : salePrice;
+    const addressParam =
+      address || "0x0000000000000000000000000000000000000000";
+    try {
+      await writeContract("mint", {
+        ...LlamaParkContractConfig,
+        functionName: "mint",
+        args: [addressParam],
+        value: actualPrice,
+      });
+    } catch (error) {
+      notify(error, "error");
+    } finally {
+      setMinting(false);
     }
   };
-
-  const removeFromTeam = (llamaId) => {
-    setTeamLlamas(teamLlamas.filter(llama => llama.id !== llamaId));
-  };
-
-  const connectWallet = () => {
-    if (!isConnected && openConnectModal) {
+  const manageMint = () => {
+    if (!active) {
       openConnectModal();
+      return;
+    }
+    if (hasMinted) {
+      notify("You have already minted", "info");
+      return;
+    }
+    // show mint modal
+    setIsModalOpen(true);
+  };
+
+  const handleMint = async (inviterAddress) => {
+    if (!active) {
+      openConnectModal();
+      return;
+    }
+    setIsModalOpen(false);
+    if (hasMinted) {
+      notify("You have already minted", "info");
+      return;
+    }
+    if (isPaused) {
+      notify("Mint is paused", "info");
+      return;
+    } else {
+      await mint(inviterAddress);
     }
   };
 
   return (
     <Layout>
-      <div className="w-full h-full flex flex-col items-center p-4 bg-blue-500">
-        <div className="text-center mb-8">
-        <h1 className={`text-5xl font-bold text-white mb-2 ${styles.fontPixel}`}>LLAMA PARK</h1>
-        <h2 className={`text-2xl text-white ${styles.fontPixel}`}>PERSONAL ASSETS</h2>
-          <div className="w-full h-1 bg-white my-4"></div>
-        </div>
-
-        {(
-          <>
-            <div className="mb-8">
-              <h3 className="text-3xl text-white font-pixel mb-4">OWNED LLAMAS</h3>
-              <div className="grid grid-cols-4 gap-4">
-                {ownedLlamas.map(llama => (
-                  <div 
-                    key={llama.id}
-                    className="bg-blue-600 p-2 border-4 border-white cursor-pointer"
-                    draggable
-                    onDragStart={(e) => handleDragStart(e, llama)}
-                  >
-                    <img 
-                      src={llama.image || "@images/llama_1.png"} 
-                      alt={llama.name}
-                      className="w-full h-auto"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-3xl text-white font-pixel mb-4">TEAM FORMATION</h3>
-              <div 
-                className="border-4 border-white border-dashed p-8 min-h-[200px] flex flex-wrap gap-4 bg-blue-600"
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
+      <div className="w-full h-full">
+        <div className="p-4 flex flex-col items-center justify-center text-xl w-full mb-16">
+          <img
+            src={llama1.src}
+            className="mb-4 w-full aspect-square object-cover rounded-3xl md:w-1/3 lg:w-1/3 2xl:w-1/4"
+          />
+          {isPaused ? (
+            <div>Mint coming soon !</div>
+          ) : (
+            <div className="flex flex-col items-center">
+              <div className="text-xs text-center mb-4">{`Mint Price: ${displayPrice} ETH. Use the invitation code to get a discounted price: ${displayDiscountPrice} ETH.`}</div>
+              <Button
+                color="primary"
+                size="sm"
+                variant="filled"
+                onClick={manageMint}
+                loading={minting}
               >
-                {teamLlamas.length === 0 ? (
-                  <div className={`w-full text-center text-white text-2xl font-pixel ${styles.fontPixel}`}>
-                    DRAG LLAMAS HERE
-                  </div>
-                ) : (
-                  teamLlamas.map(llama => (
-                    <div 
-                      key={llama.id} 
-                      className="relative bg-blue-600 p-2 border-4 border-white"
-                      onClick={() => removeFromTeam(llama.id)}
-                    >
-                      <img 
-                        src={llama1.src} 
-                        alt={llama.name}
-                        className="w-24 h-auto"
-                      />
-                      <div className="absolute top-0 right-0 bg-red-500 text-white w-6 h-6 flex items-center justify-center cursor-pointer">
-                        ×
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
+                Mint
+              </Button>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
+      <MintModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onMint={handleMint}
+      />
     </Layout>
   );
 };
 
-export default Home;
+export default Mint;

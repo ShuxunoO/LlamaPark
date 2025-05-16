@@ -4,8 +4,13 @@ const tabs = [
     path: "/",
   },
   {
-    name: "Mint",
-    path: "/mint",
+    name: "Personal",
+    path: "/personal",
+    needLogin: false,
+  },
+  {
+    name: "Chat",
+    path: "/chat",
     needLogin: false,
   },
   // {
@@ -20,11 +25,6 @@ const tabs = [
   //   needLogin: true,
   //   minter: true,
   // },
-  {
-    name: "Preview",
-    path: "/preview",
-    needLogin: false,
-  },
 ];
 
 export default tabs;
