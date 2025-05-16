@@ -14,11 +14,12 @@ import {
   okxWallet,
 } from "@rainbow-me/rainbowkit/wallets";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { publicProvider } from "wagmi/providers/public";
+import { publicProvider } from '@wagmi/core/providers/public';
 import merge from "lodash/merge";
 import { bitGetWallet } from "./connecters/bitGet/bitGetWallet";
 import { IS_PROD } from "@config/env";
 import { mainnet, polygon, sepolia } from "@wagmi/core/chains";
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 
 const WALLET_CONNECT_PROJECT_ID = "8f20bb08d0342884f1e26fccdce804af";
 const APP_NAME = "llama_park";
@@ -40,12 +41,12 @@ const EthSepolia = {
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["https://sepolia.infura.io/v3/47dbcd9bab854381a4c9787b1a1513a8"] },
-    default: { http: ["https://sepolia.infura.io/v3/47dbcd9bab854381a4c9787b1a1513a8"] },
+    public: { http: ["https://sepolia.infura.io/v3/5c0bba6252a5416eab8250ab525c4ac3"] },
+    default: { http: ["https://sepolia.infura.io/v3/5c0bba6252a5416eab8250ab525c4ac3"] },
   },
   blockExplorers: {
-    default: { name: "Scroll Sepolia", url: "https://sepolia.scrollscan.com" },
-    etherscan: { name: "Scroll Sepolia", url: "https://sepolia.scrollscan.com" },
+    default: { name: "ETH Sepolia", url: "https://sepolia.etherscan.io" },
+    etherscan: { name: "ETH Sepolia", url: "https://sepolia.etherscan.io" },
   },
   testnet: true,
 };
@@ -73,7 +74,13 @@ const Eth = {
 const WalletProvider = ({ children }) => {
   let _chains = IS_PROD === "true" ? [sepolia] : [sepolia];
 
-  const { chains, publicClient } = configureChains(_chains, [publicProvider()]);
+  const { chains, publicClient } = configureChains(_chains, [
+    jsonRpcProvider({
+      rpc: () => ({
+        http: 'https://sepolia.infura.io/v3/5c0bba6252a5416eab8250ab525c4ac3', // 👈 或者使用 Alchemy/Ankr 的 RPC
+      }),
+    }),
+  ]);
 
   const recommendedWalletList = [
     {

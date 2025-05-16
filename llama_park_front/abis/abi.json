@@ -3,33 +3,18 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "name_",
+        "name": "_name",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "symbol_",
+        "name": "_symbol",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "baseURI_",
+        "name": "_initBaseURI",
         "type": "string"
-      },
-      {
-        "internalType": "uint16",
-        "name": "maxSupply",
-        "type": "uint16"
-      },
-      {
-        "internalType": "address",
-        "name": "creator",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "paymentSplitterReference",
-        "type": "address"
       }
     ],
     "stateMutability": "nonpayable",
@@ -37,52 +22,148 @@
   },
   {
     "inputs": [],
-    "name": "CreatorTokenBase__InvalidTransferValidatorContract",
+    "name": "ERC721EnumerableForbiddenBatchMint",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "MinterCreatorSharedRoyalties__CreatorCannotBeZeroAddress",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721IncorrectOwner",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "MinterCreatorSharedRoyalties__CreatorSharesCannotBeZero",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ERC721InsufficientApproval",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "MinterCreatorSharedRoyalties__MinterCannotBeZeroAddress",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "approver",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidApprover",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "MinterCreatorSharedRoyalties__MinterHasAlreadyBeenAssignedToTokenId",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidOperator",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "MinterCreatorSharedRoyalties__MinterSharesCannotBeZero",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidOwner",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "MinterCreatorSharedRoyalties__PaymentSplitterDoesNotExistForSpecifiedTokenId",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidReceiver",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "MinterCreatorSharedRoyalties__PaymentSplitterReferenceCannotBeZeroAddress",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "ERC721InvalidSender",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "MinterCreatorSharedRoyalties__RoyaltyFeeWillExceedSalePrice",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ERC721NonexistentToken",
     "type": "error"
   },
   {
-    "inputs": [],
-    "name": "ShouldNotMintToBurnAddress",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "ERC721OutOfBoundsIndex",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableUnauthorizedAccount",
     "type": "error"
   },
   {
@@ -139,19 +220,6 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "autoApproved",
-        "type": "bool"
-      }
-    ],
-    "name": "AutomaticApprovalOfTransferValidatorSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
         "indexed": true,
         "internalType": "address",
         "name": "previousOwner",
@@ -165,19 +233,6 @@
       }
     ],
     "name": "OwnershipTransferred",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "Paused",
     "type": "event"
   },
   {
@@ -206,155 +261,6 @@
     "type": "event"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "oldValidator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "newValidator",
-        "type": "address"
-      }
-    ],
-    "name": "TransferValidatorUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      }
-    ],
-    "name": "Unpaused",
-    "type": "event"
-  },
-  {
-    "inputs": [],
-    "name": "BaseURI",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "CFO",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "DEFAULT_TRANSFER_VALIDATOR",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "DiscountAmount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "FEE_DENOMINATOR",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "InviteReward",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "MaxSupply",
-    "outputs": [
-      {
-        "internalType": "uint16",
-        "name": "",
-        "type": "uint16"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "SalePrice",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "operator",
-        "type": "address"
-      }
-    ],
-    "name": "addSupportedOperator",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -370,19 +276,6 @@
     "name": "approve",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "autoApproveTransfersFromValidator",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -406,12 +299,31 @@
   },
   {
     "inputs": [],
-    "name": "creator",
+    "name": "baseExtension",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "string",
         "name": "",
-        "type": "address"
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "userInput",
+        "type": "string"
+      }
+    ],
+    "name": "checkSecret",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_ID",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -419,7 +331,7 @@
   },
   {
     "inputs": [],
-    "name": "creatorShares",
+    "name": "cost",
     "outputs": [
       {
         "internalType": "uint256",
@@ -450,69 +362,19 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getTransferValidationFunction",
-    "outputs": [
-      {
-        "internalType": "bytes4",
-        "name": "functionSignature",
-        "type": "bytes4"
-      },
-      {
-        "internalType": "bool",
-        "name": "isViewFunction",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getTransferValidator",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "validator",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_ID",
+        "type": "uint256"
       }
     ],
-    "name": "haveMinted",
+    "name": "getRemainingtokenAmount",
     "outputs": [
       {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "inviterOf",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -535,7 +397,7 @@
     "outputs": [
       {
         "internalType": "bool",
-        "name": "isApproved",
+        "name": "",
         "type": "bool"
       }
     ],
@@ -543,32 +405,13 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "inviter",
-        "type": "address"
-      }
-    ],
-    "name": "mint",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "minterOf",
+    "inputs": [],
+    "name": "isPaused",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "bool",
         "name": "",
-        "type": "address"
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -576,7 +419,7 @@
   },
   {
     "inputs": [],
-    "name": "minterShares",
+    "name": "maxMintAmount",
     "outputs": [
       {
         "internalType": "uint256",
@@ -585,6 +428,45 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maxSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maxTokenAmountForEachAddress",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_mintAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "payable",
     "type": "function"
   },
   {
@@ -633,172 +515,14 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "paused",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "bool",
-        "name": "",
+        "name": "_state",
         "type": "bool"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "paymentSplitterOf",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "paymentSplitterReference",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "minter",
-        "type": "address"
-      }
-    ],
-    "name": "paymentSplittersOfMinter",
-    "outputs": [
-      {
-        "internalType": "address[]",
-        "name": "",
-        "type": "address[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "coin",
-        "type": "address"
-      },
-      {
-        "internalType": "enum MinterCreatorSharedRoyaltiesBase.ReleaseTo",
-        "name": "releaseTo",
-        "type": "uint8"
-      }
-    ],
-    "name": "releasableERC20Funds",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "enum MinterCreatorSharedRoyaltiesBase.ReleaseTo",
-        "name": "releaseTo",
-        "type": "uint8"
-      }
-    ],
-    "name": "releasableNativeFunds",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "coin",
-        "type": "address"
-      },
-      {
-        "internalType": "enum MinterCreatorSharedRoyaltiesBase.ReleaseTo",
-        "name": "releaseTo",
-        "type": "uint8"
-      }
-    ],
-    "name": "releaseERC20Funds",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "enum MinterCreatorSharedRoyaltiesBase.ReleaseTo",
-        "name": "releaseTo",
-        "type": "uint8"
-      }
-    ],
-    "name": "releaseNativeFunds",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "operator",
-        "type": "address"
-      }
-    ],
-    "name": "removeSupportedOperator",
+    "name": "pause",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -808,48 +532,6 @@
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "royaltyFeeNumerator",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "salePrice",
-        "type": "uint256"
-      }
-    ],
-    "name": "royaltyInfo",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -924,12 +606,12 @@
   {
     "inputs": [
       {
-        "internalType": "bool",
-        "name": "autoApprove",
-        "type": "bool"
+        "internalType": "string",
+        "name": "_newBaseExtension",
+        "type": "string"
       }
     ],
-    "name": "setAutomaticApprovalOfTransfersFromValidator",
+    "name": "setBaseExtension",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -937,19 +619,12 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "cfo",
-        "type": "address"
+        "internalType": "string",
+        "name": "_newBaseURI",
+        "type": "string"
       }
     ],
-    "name": "setCFO",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "setPause",
+    "name": "setBaseURI",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -957,19 +632,12 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "transferValidator_",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_newCost",
+        "type": "uint256"
       }
     ],
-    "name": "setTransferValidator",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "setUnpause",
+    "name": "setCost",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -977,20 +645,99 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "_MaxAmount",
+        "type": "uint256"
       }
     ],
-    "name": "supportedOperator",
+    "name": "setMaxTokenAmountForEachAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_ID",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "secret",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "supplyAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "setSignalattributes",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_newmaxMintAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "setmaxMintAmountOneTime",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_ID",
+        "type": "uint256"
+      }
+    ],
+    "name": "showSecretattributes",
     "outputs": [
       {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
+        "components": [
+          {
+            "internalType": "string",
+            "name": "signalName",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalSupply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "mintedNumber",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct MyToken.Signal",
+        "name": "secret",
+        "type": "tuple"
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "userInput",
+        "type": "string"
+      }
+    ],
+    "name": "specialMint_tunnel",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -1034,25 +781,6 @@
       }
     ],
     "name": "tokenByIndex",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "tokenIdOfMinter",
     "outputs": [
       {
         "internalType": "uint256",
@@ -1158,45 +886,27 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "baseURI_",
-        "type": "string"
-      }
-    ],
-    "name": "updateBaseURI",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "address",
-        "name": "tokenAddress",
+        "name": "_owner",
         "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
       }
     ],
-    "name": "withdrawERC20",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "name": "walletOfOwner",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "withdrawETH",
+    "inputs": [],
+    "name": "withdraw",
     "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "payable",
     "type": "function"
   }
 ]
