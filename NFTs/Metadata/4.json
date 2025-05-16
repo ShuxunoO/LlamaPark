@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #4",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/4.png",
+    "attributes": [
+        {
+            "trait_type": "Gender",
+            "value": "Boy"
+        },
+        {
+            "trait_type": "Hair",
+            "value": "Cowboy Hat"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Glowing Yellow"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "Brown Jacket"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Solid Red"
+        },
+        {
+            "trait_type": "Ability",
+            "value": "Twitter"
+        },
+        {
+            "trait_type": "MBTI",
+            "value": "ESTP"
+        }
+    ],
+    "description": "Saddle up for GrittyGus, the toughest llama in Llama Park! With a cowboy hat tilted low and glowing yellow eyes, this green-skinned boy llama struts in a brown jacket against a bold red backdrop. An ESTP, he’s a sharp shooter with a quick draw and quicker temper. 'Yee-haw puff puff!' he hollers, ready for action, but spits like a storm when riled. His daring spirit and rugged charm make him the park’s wildest cowboy!"
+}

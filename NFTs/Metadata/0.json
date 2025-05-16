@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #0",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/0.png",
+    "attributes": [
+        {
+            "trait_type": "Gender",
+            "value": "Boy"
+        },
+        {
+            "trait_type": "Hair",
+            "value": "Afro-hair"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "3D Glasses"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "T-Shirt"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "White"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Forest"
+        },
+        {
+            "trait_type": "Ability",
+            "value": "Drawing"
+        },
+        {
+            "trait_type": "MBTI",
+            "value": "ENFJ"
+        }
+    ],
+    "description":"Meet the coolest llama in Llama Park! Rocking an afro and 3D glasses, this white-skinned, T-shirt-wearing boy llama is an ENFJ who’s a master at creating awesome 8-bit pixel art, spreading creativity across the plains. “Puff puff puff!” he bleats joyfully when happy, but watch out—he spits at others when upset! “Puff puff puff!” His big heart and wild style make him the forest’s trendsetting king!"
+}

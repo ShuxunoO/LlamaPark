@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #1",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/1.png",
+    "attributes": [
+            {
+                "trait_type": "Gender",
+                "value": "Girl"
+            },
+            {
+                "trait_type": "Hair",
+                "value": "Rainbow Curls"
+            },
+            {
+                "trait_type": "Eyes",
+                "value": "Laser Eyes"
+            },
+            {
+                "trait_type": "Clothes",
+                "value": "Denim Jacket"
+            },
+            {
+                "trait_type": "Skin",
+                "value": "Spotted"
+            },
+            {
+                "trait_type": "Background",
+                "value": "Pixel Desert"
+            },
+            {
+                "trait_type": "Ability",
+                "value": "Talk Show"
+            },
+            {
+                "trait_type": "MBTI",
+                "value": "ESFP"
+            }
+        ],
+        "description": "Meet the llama dazzling diva in Llama Park! With rainbow curls bouncing and laser eyes sparkling, this spotted-skinned girl llama rocks a denim jacket in the pixel desert. An ESFP, she hosts epic talk shows, charming all with her wit. 'Bloop bloop bloop!' she hums when thrilled, but sulks with a sassy spit when annoyed. Her vibrant energy and bold flair make her the desert’s shining star!"
+}

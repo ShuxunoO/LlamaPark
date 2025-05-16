@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #2",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/2.png",
+    "attributes": [
+        {
+            "trait_type": "Gender",
+            "value": "Girl"
+        },
+        {
+            "trait_type": "Hair",
+            "value": "Puffy Pink Pigtails"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sparkly Heart"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "Floral Dress"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Pink"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Pixel Garden"
+        },
+        {
+            "trait_type": "Ability",
+            "value": "Drawing"
+        },
+        {
+            "trait_type": "MBTI",
+            "value": "ESFP"
+        }
+    ],
+    "description": "Meet PuffyPop, the bubbliest girl llama in Llama Park! With puffy pink pigtails bouncing and sparkly heart eyes, she twirls in a floral dress, painting the Pixel Garden with vibrant sketches. An ESFP, her drawings burst with charm, and her giggle echoes, ‘Twirl puff puff!’ But cross her, and she’ll pout with a sassy spit. Her radiant joy and girly flair make her the garden’s dazzling darling!"
+}
