@@ -40,10 +40,10 @@ function Layout({ children, className }) {
 
 
   return (
-    <main className={`main bg-blue-500 ${className || ''}`}>
+    <main className={`main min-h-screen bg-blue-500 ${className || ''}`}>
       <TopBar />
       <div
-        className='w-screen min-h-screen bg-cover bg-center bg-no-repeat'
+        className='w-screen flex-1 bg-cover bg-center bg-no-repeat'
         style={{ backgroundImage: `url(${LlamaParkBackground.src})` }}
       >
         {children}

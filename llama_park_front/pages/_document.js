@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
           <link rel="icon" type="image/ico" href={`${process.env.BASE_PATH}/favicon.ico`} />
           <LidoUIHead />
         </Head>
-        <body>
+        <body className='bg-blue-500'>
           <Main />
           <NextScript />
         </body>
