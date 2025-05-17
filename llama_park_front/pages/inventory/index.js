@@ -100,7 +100,7 @@ const Home = () => {
     setTeamLlamas(teamLlamas.filter(llama => llama.id !== llamaId));
   };
   const goDetail = (llamaId) => {
-    // TODO: go to chat page with llamaId as query parameter
+    // go to chat page with llamaId as query parameter
     console.log(llamaId);
     Router.push({
       pathname: '/chat',
@@ -111,7 +111,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="w-full h-full flex flex-col items-center p-4 bg-blue-500">
+      <div className="w-full h-full flex flex-col items-center p-4">
         <div className="text-center mb-8">
         <h1 className={`text-5xl font-bold text-white mb-2 ${styles.fontPixel}`}>LLAMA PARK</h1>
         <h2 className={`text-2xl text-white ${styles.fontPixel}`}>PERSONAL ASSETS</h2>
