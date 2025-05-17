@@ -6,7 +6,6 @@ import { sendTransaction as sendTransactionWagmi, writeContract as writeContract
 import { capitalize } from "lodash";
 import { ethers } from "ethers";
 import { parseGwei, InsufficientFundsError } from "viem";
-import { setMinted } from '@store/user';
 
 export function toHex(str) {
   let result = '';
@@ -53,9 +52,12 @@ export async function sendTransaction(operate, data) {
 
 // get current gasPrice
 const getGasPrice = async () => {
+  console.log('window.ethereum', window.ethereum)
   if (window.ethereum) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
+    console.log('provider', provider);
     const gasPrice = await provider.getGasPrice();
+    console.log('gasPrice', gasPrice);
     return parseGwei(ethers.utils.formatUnits(gasPrice, 'gwei'));
   } else {
     throw new Error('No Ethereum provider detected. Install MetaMask or another wallet.');
@@ -64,19 +66,19 @@ const getGasPrice = async () => {
 
 export async function writeContract(operate, param) {
   const _operate = capitalize(operate === 'broadcast' ? 'post' : operate);
-
+  console.log('param', operate, param)
   try {
-    const gasPrice = await getGasPrice();
-    const hashData = await writeContractWagmi({ ...param, gasPrice, gas: parseGwei('0.0007') }); // set gasPrice
+    // const gasPrice = await getGasPrice();
+    // console.log('gasPrice', gasPrice)
+    const hashData = await writeContractWagmi({ ...param, gasPrice: parseGwei('200'),  gas: parseGwei('0.0007') }); // set gasPrice
+    console.log('hashData', hashData)
     dispatch(setSubmitModalParam({ type: _operate, state: 'submitted', hash: hashData.hash }));
     const receipt = await waitForTransaction(hashData);
-    if (receipt.status) {
-      dispatch(setMinted(true));
-    }
+    console.log("recewaitForTransactionipt", receipt);
     dispatch(setSubmitModalParam({ state: receipt.status ? 'success' : 'failed' }));
     hashNotify(hashData.hash, receipt.status ? 'success' : 'failed');
   } catch (err) {
-    // console.error(err)
+    console.error(err)
     const isInsufficientFundsError = err.walk((e) => e instanceof InsufficientFundsError);
     if (isInsufficientFundsError) {
       return Promise.reject('Insufficient funds');

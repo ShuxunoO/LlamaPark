@@ -8,6 +8,8 @@ import useWallet from "@wallets/useWallet";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { notify } from "@utils/msgNotify";
 import { Button } from "@lidofinance/lido-ui";
+// It's good practice to import parseEther or similar for handling ETH values
+import { parseEther } from "viem";
 
 const Mint = () => {
   // if wallet is connected, fetch user's mint status
@@ -18,15 +20,21 @@ const Mint = () => {
 
   const mint = async () => {
     setMinting(true);
-    const actualPrice = 0;
     try {
+      // Assuming you want to mint 1 token at a time
+      const mintAmountToPass = BigInt(1);
+
       await writeContract("mint", {
-        ...LlamaParkContractConfig,
+        ...LlamaParkContractConfig, // Contains address and abi
         functionName: "mint",
-        value: actualPrice,
+        args: [mintAmountToPass], // Pass the _mintAmount as an argument
+        value: 0n, // Using BigInt zero for 0 ETH mint price
       });
     } catch (error) {
-      notify(error, "error");
+      // Ensure the error is a string or has a message property for notify
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      notify(errorMessage, "error");
+      console.error("Minting error:", error); // Log the full error for more details
     } finally {
       setMinting(false);
     }

@@ -19,6 +19,7 @@ export const slice = createSlice({
       state.accountModalOpen = payload;
     },
     setSubmitModalParam: (state, { payload }) => {
+      console.log('payload', payload)
       state.submitModalParam = { ...state.submitModalParam, ...payload };
     },
     resetSubmitModalParam: (state, { payload }) => {

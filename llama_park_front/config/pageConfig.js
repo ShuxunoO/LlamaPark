@@ -4,8 +4,8 @@ const tabs = [
     path: "/",
   },
   {
-    name: "Personal",
-    path: "/personal",
+    name: "Inventory",
+    path: "/inventory",
     needLogin: false,
   },
   {
@@ -13,18 +13,6 @@ const tabs = [
     path: "/chat",
     needLogin: false,
   },
-  // {
-  //   name: "My NFT",
-  //   path: "/my-nft",
-  //   needLogin: true,
-  //   nftNumber: true,
-  // },
-  // {
-  //   name: "My Royalty",
-  //   path: "/my-mint",
-  //   needLogin: true,
-  //   minter: true,
-  // },
 ];
 
 export default tabs;

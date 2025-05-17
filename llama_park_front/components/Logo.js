@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
-// import LogoIcon from '@icons/logo.png';
+import LogoIcon from '@icons/logo.png';
 import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +80,7 @@ export default function Logo() {
 
   return (
     <div className={classes.root} onClick={jumpToIntroduce}>
-      {/* <img className={classes.logo} src={LogoIcon.src} /> */}
+      <img className={classes.logo} src={LogoIcon.src} />
       <div className={classes.title}>LlamaPark</div>
     </div>
   );
