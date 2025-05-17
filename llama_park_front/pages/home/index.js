@@ -43,7 +43,7 @@ const Mint = () => {
   // minting state
   const [minting, setMinting] = useState(false);
   const { loading, supply, fetchSupply } = useNFTData();
-  const progress = Math.min(supply / 16, 1);
+  const progress = Math.min(supply / 15, 1);
   const mint = async () => {
     setMinting(true);
     try {
@@ -99,29 +99,36 @@ const Mint = () => {
                 alt="llama pixel art"
               />
             </div>
-            {/* Pixel progress bar */}
-            <div className="w-72 h-6 flex items-center mb-8 bg-[#101a2b] border-4 border-[#1c2e4a] relative" style={{boxShadow: '2px 2px 0 #101a2b'}}>
-              <div
-                className="h-full bg-[#2b3e5a]"
-                style={{
-                  width: '100%',
-                  position: 'absolute',
-                  left: 0,
-                  top: 0,
-                  zIndex: 1,
-                }}
-              ></div>
-              <div
-                className="h-full bg-[#22aaff]"
-                style={{
-                  width: progress * 100 + '%',
-                  transition: "width 2s cubic-bezier(0.4,0,0.2,1)",
-                  position: 'absolute',
-                  left: 0,
-                  top: 0,
-                  zIndex: 2,
-                }}
-              ></div>
+            {/* Container for progress bar and text */}
+            <div className="flex items-center mb-8">
+              {/* Pixel progress bar */}
+              <div className="w-72 h-6 bg-[#101a2b] border-4 border-[#1c2e4a] relative" style={{boxShadow: '2px 2px 0 #101a2b'}}>
+                <div
+                  className="h-full bg-[#2b3e5a]"
+                  style={{
+                    width: '100%',
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    zIndex: 1,
+                  }}
+                ></div>
+                <div
+                  className="h-full bg-[#22aaff]"
+                  style={{
+                    width: progress * 100 + '%',
+                    transition: "width 2s cubic-bezier(0.4,0,0.2,1)", // Corrected cubic-bezier
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    zIndex: 2,
+                  }}
+                ></div>
+              </div>
+              {/* Text to the right of the progress bar */}
+              <span className="text-[#f0e6d2] text-sm ml-3"> {/* Added ml-3 for spacing and font-mono for pixel style consistency */}
+                {supply} / 15
+              </span>
             </div>
             {/* Pixel-art Mint Button */}
             <button
