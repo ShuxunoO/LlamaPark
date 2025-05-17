@@ -7,6 +7,7 @@ import TopBar from '@containers/TopBar';
 import { resetSubmitModalParamFn, setAccountModalOpen } from '@store/ui';
 import { dispatch } from '@store/index';
 import styled from 'styled-components';
+import LlamaParkBackground from '@images/Llama_Park_Background.png'; // Import the background image
 
 
 const TabBox = styled.div`
@@ -41,7 +42,10 @@ function Layout({ children, className }) {
   return (
     <main className={`main bg-blue-500 ${className || ''}`}>
       <TopBar />
-      <div className='w-screen'>
+      <div
+        className='w-screen min-h-screen bg-cover bg-center bg-no-repeat'
+        style={{ backgroundImage: `url(${LlamaParkBackground.src})` }}
+      >
         {children}
       </div>
       <ToastContainer />
