@@ -21,7 +21,7 @@ export default function ChatItem({ message, NFT_ID }) {
         }),
       });
       const data = await response.json();
-      setAssistant(data.assistant);
+      setAssistant(data.message);
       setLoading(false);
     } catch (error) {
       console.error(error);
