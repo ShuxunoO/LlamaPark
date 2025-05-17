@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #12",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/12.png",
+    "attributes": [
+        {
+            "trait_type": "Gender",
+            "value": "Boy"
+        },
+        {
+            "trait_type": "Hair",
+            "value": "Slick-back"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Monocle"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "Turtleneck Sweater"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Gray"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Library"
+        },
+        {
+            "trait_type": "Ability",
+            "value": "Twitter"
+        },
+        {
+            "trait_type": "MBTI",
+            "value": "INTP"
+        }
+    ],
+    "description": "A digital-age philosopher, this gray-skinned boy llama lives in a library but rules the world via Twitter threads. With a monocle and a turtleneck, he deconstructs memes and Plato in the same breath. He tweets haikus at sunrise and debates with bots at midnight. Dry wit, high IQ, and a timeline of fire."
+}

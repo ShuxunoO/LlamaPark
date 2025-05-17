@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #11",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/11.png",
+    "attributes": [
+        {
+            "trait_type": "Gender",
+            "value": "Boy"
+        },
+        {
+            "trait_type": "Hair",
+            "value": "Wise Grey Afro"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "3D Glasses (for perspective!)"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "Comfy Cardigan"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Silver"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Pixelated Desert Oasis"
+        },
+        {
+            "trait_type": "Ability",
+            "value": "Talk Show"
+        },
+        {
+            "trait_type": "MBTI",
+            "value": "ENFJ"
+        }
+    ],
+    "description": "Greetings! I'm Professor Fluff, Llama Park's beloved host and silver-skinned sage. Rocking a wise grey afro and 3D glasses (for seeing all sides of an argument!), this ENFJ runs the most enlightening 'Talk Show' from his desert oasis. His joyful bleat is a warm 'Mmm-baaaah! Insightful!' If you bring negativity, he'll gently guide you to a more positive pixel with a calm, 'Now, now, let's reframe that.' He's all about connection and deep chats!"
+}

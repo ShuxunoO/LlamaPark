@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #10",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/10.png",
+    "attributes": [
+        {
+            "trait_type": "Gender",
+            "value": "Boy"
+        },
+        {
+            "trait_type": "Hair",
+            "value": "Black Afro"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "3D Glasses"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "Dark Suit"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Gray"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Desert Landscape"
+        },
+        {
+            "trait_type": "Ability",
+            "value": "Talk Show"
+        },
+        {
+            "trait_type": "MBTI",
+            "value": "ESFP"
+        }
+    ],
+    "description": "Roll out the red sand for AfroHost, the desert’s top talk show star of Llama Park! With a wild black afro and 3D glasses, this gray-skinned boy llama rocks a dark suit amid pyramids and cacti. An ESFP, he dazzles with hilarious chats and witty quips. 'Haha puff puff!' he laughs on air, but spits with flair when the crowd boos. His vibrant energy and desert charm make him the park’s entertainment king!"
+}

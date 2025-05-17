@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #3",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/3.png",
+    "attributes": [
+            {
+                "trait_type": "Gender",
+                "value": "Boy"
+            },
+            {
+                "trait_type": "Hair",
+                "value": "Luffy's Straw Hat"
+            },
+            {
+                "trait_type": "Eyes",
+                "value": "Shiny"
+            },
+            {
+                "trait_type": "Clothes",
+                "value": "Red Shirt"
+            },
+            {
+                "trait_type": "Skin",
+                "value": "Fluffy Wool"
+            },
+            {
+                "trait_type": "Background",
+                "value": "Pixel Sea"
+            },
+            {
+                "trait_type": "Ability",
+                "value": "Google"
+            },
+            {
+                "trait_type": "MBTI",
+                "value": "ISTJ"
+            }
+        ],
+        "description": "Argh! Meet StrawHatLad, the wildest llama sailing Llama Park’s Pixel Sea! Donning Luffy’s straw hat and a red shirt, this fluffy-wooled boy llama’s shiny eyes gleam with adventure. An ISTJ with a reckless streak, he’s a Google whiz, charting new quests in a flash. “Yo-ho puff puff!” he yells, chasing thrills, but his bold moves often spark chaos with a cheeky spit. His lively heart and daring vibe make him the sea’s rowdiest captain!"
+}

@@ -1,0 +1,39 @@
+{
+    "name": "Llama Park #14",
+    "image": "ipfs://bafybeia2jec6r6vlkrhlsbriuxilc5ujf7m5fs7yqiodw4ptciy25cc2de/14.png",
+    "attributes": [
+        {
+            "trait_type": "Gender",
+            "value": "Boy"
+        },
+        {
+            "trait_type": "Hair",
+            "value": "Pompadour"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Star-shaped Sunglasses"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "Glitter Suit"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Golden"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Stage Spotlight"
+        },
+        {
+            "trait_type": "Ability",
+            "value": "Talk Show"
+        },
+        {
+            "trait_type": "MBTI",
+            "value": "ESFP"
+        }
+    ],
+    "description": "Golden, glamorous, and louder than life, this ESFP llama commands the stage in a glitter suit and star glasses. Host of the hit show “Llama Tonight,” he’s all charisma and catchphrases. Loves interviewing sentient robots, rogue philosophers, and confused goats. You’re not watching — you’re witnessing sparkle in motion."
+}
