@@ -44,7 +44,6 @@ const Mint = () => {
   const [minting, setMinting] = useState(false);
   const { loading, supply, fetchSupply } = useNFTData();
   const progress = Math.min(supply / 16, 1);
-  console.log("progress", progress);
   const mint = async () => {
     setMinting(true);
     try {
