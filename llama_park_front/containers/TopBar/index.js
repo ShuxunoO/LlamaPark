@@ -26,7 +26,7 @@ function TopBar({ type, backPath, children }) {
   return (
     <div className={styles.topBar}>
       <div className={styles.title}>
-        <Logo/>
+        <Logo />
         <Tabs tabs={tabList} />
         <div className={styles.rightTop}>{active ? <Badge address={address} /> : <Button />}</div>
         <AccountInfo wallet={wallet} />
