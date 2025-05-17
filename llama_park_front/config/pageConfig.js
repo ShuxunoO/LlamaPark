@@ -2,11 +2,13 @@ const tabs = [
   {
     name: "Home",
     path: "/",
+    icon: 0
   },
   {
     name: "Inventory",
     path: "/inventory",
     needLogin: false,
+    icon: 1
   },
   // {
   //   name: "Chat",
