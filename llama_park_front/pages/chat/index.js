@@ -61,7 +61,7 @@ export default function LlamaParkPage() {
   const handleEndChat = useCallback(() => {
     setMessages([]);
   }, []);
-  const llama = useMemo(() => nfts[+tokenId - 1] || nfts[0], [tokenId]);
+  const llama = useMemo(() => nfts[+tokenId] || nfts[1], [tokenId]);
 
   return (
     <Layout>
@@ -97,7 +97,9 @@ export default function LlamaParkPage() {
 
           <div className="flex flex-col flex-1 overflow-y-auto">
             <div className="bg-[#002c70]/70 border-2 border-[#001f50] text-sm h-full flex flex-col">
-              <div className="overflow-y-auto flex-1 p-4 flex flex-col gap-2 text-white">
+              <div
+                className={`overflow-y-auto flex-1 p-4 flex flex-col gap-2 text-white ${messages.length === 0 ? 'justify-center' : ''}`}
+              >
                 {messages.map((message, index) => (
                   <ChatItem
                     key={index}
@@ -105,14 +107,21 @@ export default function LlamaParkPage() {
                     NFT_ID={`Llama Park #${tokenId}`}
                   />
                 ))}
+                {messages.length === 0 && (
+                  <div className="flex flex-col gap-2">
+                    <p className="text-center text-white">
+                      Ask me anything about your Llama Park NFT!
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="flex gap-2 mt-2 px-4 pb-4">
-                <button
+                {/* <button
                   onClick={() => setMessageType(messageType === 'text' ? 'voice' : 'text')}
                   className="bg-[#001f50] border-2 border-[#001538] w-10 h-10 text-white text-lg cursor-pointer hover:text-[#a0c8ff]"
                 >
                   {messageType === 'text' ? <>🎤</> : <>⌨️</>}
-                </button>
+                </button> */}
                 {messageType === 'voice' ? (
                   <VoiceButton />
                 ) : (
