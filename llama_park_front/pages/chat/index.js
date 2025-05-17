@@ -105,6 +105,7 @@ export default function LlamaParkPage() {
                     key={index}
                     message={message}
                     NFT_ID={`Llama Park #${tokenId}`}
+                    Gender={llama.attributes.find(attr => attr.trait_type === 'Gender')?.value}
                   />
                 ))}
                 {messages.length === 0 && (
@@ -116,14 +117,14 @@ export default function LlamaParkPage() {
                 )}
               </div>
               <div className="flex gap-2 mt-2 px-4 pb-4">
-                {/* <button
+                <button
                   onClick={() => setMessageType(messageType === 'text' ? 'voice' : 'text')}
                   className="bg-[#001f50] border-2 border-[#001538] w-10 h-10 text-white text-lg cursor-pointer hover:text-[#a0c8ff]"
                 >
                   {messageType === 'text' ? <>🎤</> : <>⌨️</>}
-                </button> */}
+                </button>
                 {messageType === 'voice' ? (
-                  <VoiceButton />
+                  <VoiceButton onSendMessage={handleSendMessage} />
                 ) : (
                   <TextChat onSendMessage={handleSendMessage} />
                 )}
@@ -141,11 +142,11 @@ export default function LlamaParkPage() {
           </div>
         </div>
 
-        {/* <div className="text-center">
+        <div className="text-center">
           <button className="bg-[#f5d7a2] text-[#5a3a1e] border-3 border-[#c7a778] px-8 py-3 text-lg uppercase cursor-pointer mt-8 tracking-wide shadow-[3px_3px_0px_#c7a778] active:shadow-[1px_1px_0px_#c7a778] active:translate-x-[2px] active:translate-y-[2px] hover:bg-[#e8c992]">
             SOUL BIND
           </button>
-        </div> */}
+        </div>
       </div>
     </Layout>
   );
