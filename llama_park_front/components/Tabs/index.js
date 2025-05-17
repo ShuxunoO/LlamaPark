@@ -32,12 +32,12 @@ export default function Tabs({ tabs = [] }) {
             key={`${tab.name}-${i}`}
             className={`${styles.navItem} ${
               asPath === tab.path ? styles.active : ""
-            } flex items-center justify-center cursor-pointer`}
+            } flex items-center justify-center cursor-pointer gap-2`}
             onClick={() => go(tab)}
           >
             {
               tab.icon > -1 && (
-                <img src={icons[i].src} alt="" className="w-[30px]" />
+                <img src={icons[i].src} alt="" className="size-6 -mt-1" />
               )
             }
             {tab.name}

@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
   },
   logo: {
-    width: "32px",
-    height: "30px",
-    marginRight: "18px",
+    width: "40px",
+    height: "38px",
+    marginRight: "12px",
     flexShrink: 0,
   },
   title: {
