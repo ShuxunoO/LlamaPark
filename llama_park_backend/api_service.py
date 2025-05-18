@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from chatBox import get_response
+from chatBox import get_response, drawing_mcp_call, search_mcp_call, llamafactory_api_call
 import logging
 from flask_cors import CORS
 # 配置日志
@@ -102,6 +102,10 @@ def get_chat_history(user_addr, NFT_ID):
         chat_history[user_addr][NFT_ID] = []
     return chat_history[user_addr][NFT_ID]
 
+def get_llama_abilility(NFT_ID):
+    """获取llama的能力"""
+    llama_info = llama_description.get(NFT_ID, {})
+    return llama_info.get("ability", None)
 
 
 @app.route('/api/llamachat', methods=['POST'])
@@ -113,18 +117,18 @@ def llama_chat():
         user_address = data.get('user_addr', '')
         nft_id = data.get('NFT_ID', '')
         chat_messages = data.get('message', '')
-        # 日志记录请求
-        logger.info(f"收到请求 - 用户地址: {user_address}, NFT_ID: {nft_id}")
 
         # 拿到历史聊天数据
         chat_history = get_chat_history(user_address, nft_id)
+        llama_alility = get_llama_abilility(nft_id)
+        print(f"llama ability: {llama_alility}")
         # 得到llama的初始化描述
         llama_character = initialize_chat(nft_id)
         
         # 构建输入信息
         input_message = []
-        input_message.append(llama_character)
         input_message.extend(chat_history)
+        input_message.append(llama_character)
         input_message.append({"role": "user", "content": chat_messages})
         print(input_message)
         
@@ -132,8 +136,21 @@ def llama_chat():
         chat_history.append({"role": "user", "content": chat_messages})
         
         # 获取助手回复
-        response = get_response(input_message)
-        assistant_output = response.choices[0].message.content
+        if nft_id == "Llama Park #7":
+            assistant_output = llamafactory_api_call()
+        else:
+            
+            if llama_alility == "Drawing":
+                assistant_output = drawing_mcp_call(input_message)
+
+            elif llama_alility == "Google":
+                assistant_output = search_mcp_call(input_message)
+
+            else:
+                # 其他能力的处理
+                response = get_response(input_message)
+                assistant_output = response.choices[0].message.content
+
         
         # 将助手回复添加到聊天历史记录里
         chat_history.append({"role": "assistant", "content": assistant_output})
