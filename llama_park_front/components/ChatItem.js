@@ -1,5 +1,6 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import useWallet from "@wallets/useWallet";
+import { marked } from 'marked';
 
 // Gender: Boy, Girl
 export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
@@ -32,19 +33,19 @@ export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
       if (data.message && typeof window !== 'undefined') {
         // Cancel any ongoing speech before starting a new one
         window.speechSynthesis.cancel();
-        
+
         const utterance = new SpeechSynthesisUtterance(data.message);
         // Enhance emotional expression with voice properties
         utterance.rate = 0.9; // Slightly slower for more emotion
         utterance.volume = 1.0; // Full volume
-        
+
         // Adjust pitch based on gender
         if (Gender === 'Girl') {
           utterance.pitch = 1.2; // Higher pitch for female voice
         } else {
           utterance.pitch = 0.9; // Lower pitch for male voice
         }
-        
+
         // Get voices after speech synthesis is ready
         // Some browsers need time to load voices
         let voices = window.speechSynthesis.getVoices();
@@ -88,6 +89,7 @@ export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
       setError('Error fetching assistant');
     }
   }, [message, address, NFT_ID]);
+  const htmlflow = useMemo(() => ({ __html: marked.parse(assistant) }), [assistant]);
   useEffect(() => {
     handleGetAssistant();
   }, []);
@@ -95,7 +97,7 @@ export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
   return (
     <div className="flex flex-col gap-2">
       <p className="text-right pl-6">{message}</p>
-      <p className="pr-6">{loading ? 'Thinking...' : assistant || error}</p>
+      <div className="pr-6">{loading ? 'Thinking...' : (assistant ? <article className="prose max-w-[480px]" dangerouslySetInnerHTML={htmlflow} /> : null) || error}</div>
     </div>
   );
 }

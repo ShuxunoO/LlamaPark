@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin "@tailwindcss/typography";
+
 body {
   font-family: 'Press Start 2P', cursive;
   background-color: #000; /* 可选：设置背景色 */
