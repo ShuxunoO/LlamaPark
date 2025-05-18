@@ -23,6 +23,11 @@ export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
       });
       const data = await response.json();
       setAssistant(data.message);
+      // 让 ID 为 chat-new 的元素滚动到可视区域
+      const chatNew = document.getElementById('chat-new');
+      if (chatNew) {
+        chatNew.scrollIntoView({ behavior: 'smooth' });
+      }
       // Use browser's Text-to-Speech API to speak the assistant's response
       if (data.message && typeof window !== 'undefined') {
         // Cancel any ongoing speech before starting a new one
@@ -43,91 +48,37 @@ export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
         // Get voices after speech synthesis is ready
         // Some browsers need time to load voices
         let voices = window.speechSynthesis.getVoices();
-        
-        // Function to handle long text by splitting it into chunks
-        const speakLongText = (text, voice) => {
-          // Split text into manageable chunks (around 200 characters)
-          const maxChunkLength = 200;
-          const textChunks = [];
-          
-          for (let i = 0; i < text.length; i += maxChunkLength) {
-            // Find a good breaking point (space, period, etc.)
-            let endIndex = Math.min(i + maxChunkLength, text.length);
-            if (endIndex < text.length) {
-              // Try to find a natural break point
-              const nextSpace = text.indexOf(' ', endIndex);
-              const nextPeriod = text.indexOf('.', endIndex);
-              const nextComma = text.indexOf(',', endIndex);
-              
-              if (nextPeriod > -1 && nextPeriod < nextSpace) {
-                endIndex = nextPeriod + 1;
-              } else if (nextComma > -1 && nextComma < nextSpace) {
-                endIndex = nextComma + 1;
-              } else if (nextSpace > -1) {
-                endIndex = nextSpace;
-              }
-            }
-            
-            textChunks.push(text.substring(i, endIndex));
-          }
-          
-          // Speak each chunk sequentially
-          let chunkIndex = 0;
-          
-          const speakNextChunk = () => {
-            if (chunkIndex < textChunks.length) {
-              const chunkUtterance = new SpeechSynthesisUtterance(textChunks[chunkIndex]);
-              chunkUtterance.voice = voice;
-              chunkUtterance.rate = 0.9;
-              chunkUtterance.volume = 1.0;
-              chunkUtterance.pitch = Gender === 'Girl' ? 1.2 : 0.9;
-              
-              chunkUtterance.onend = () => {
-                chunkIndex++;
-                speakNextChunk();
-              };
-              
-              window.speechSynthesis.speak(chunkUtterance);
-            }
-          };
-          
-          speakNextChunk();
-        };
-        
-        const setupVoiceAndSpeak = () => {
-          let selectedVoice = null;
-          
-          if (Gender === 'Girl') {
-            const femaleVoices = voices.filter(voice => voice.name.includes('female') || voice.name.includes('Female'));
-            if (femaleVoices.length > 0) {
-              selectedVoice = femaleVoices[0];
-              utterance.voice = selectedVoice;
-            }
-          } else {
-            const maleVoices = voices.filter(voice => voice.name.includes('male') || voice.name.includes('Male'));
-            if (maleVoices.length > 0) {
-              selectedVoice = maleVoices[0];
-              utterance.voice = selectedVoice;
-            }
-          }
-          
-          // Use the chunking method for long text
-          if (data.message.length > 150) {
-            speakLongText(data.message, selectedVoice);
-          } else {
-            window.speechSynthesis.speak(utterance);
-          }
-        };
-        
         if (voices.length === 0) {
           // If voices aren't loaded yet, wait for them
           window.speechSynthesis.onvoiceschanged = () => {
             voices = window.speechSynthesis.getVoices();
-            setupVoiceAndSpeak();
+            if (Gender === 'Girl') {
+              const femaleVoices = voices.filter(voice => voice.name.includes('female') || voice.name.includes('Female'));
+              if (femaleVoices.length > 0) {
+                utterance.voice = femaleVoices[0];
+              }
+            } else {
+              const maleVoices = voices.filter(voice => voice.name.includes('male') || voice.name.includes('Male'));
+              if (maleVoices.length > 0) {
+                utterance.voice = maleVoices[0];
+              }
+            }
+            window.speechSynthesis.speak(utterance);
           };
         } else {
           // Voices are already loaded
-          setupVoiceAndSpeak();
+          if (Gender === 'Girl') {
+            const femaleVoices = voices.filter(voice => voice.name.includes('female') || voice.name.includes('Female'));
+            if (femaleVoices.length > 0) {
+              utterance.voice = femaleVoices[0];
+            }
+          } else {
+            const maleVoices = voices.filter(voice => voice.name.includes('male') || voice.name.includes('Male'));
+            if (maleVoices.length > 0) {
+              utterance.voice = maleVoices[0];
+            }
+          }
+          window.speechSynthesis.speak(utterance);
         }
       }
       setLoading(false);

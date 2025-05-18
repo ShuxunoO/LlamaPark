@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import Layout from "Layout";
 import VoiceButton from "components/VoiceButton";
 import TextChat from "components/TextChat";
@@ -63,6 +63,12 @@ export default function LlamaParkPage() {
   }, []);
   const llama = useMemo(() => nfts[+tokenId] || nfts[1], [tokenId]);
 
+  useEffect(() => {
+    return () => {
+      window.speechSynthesis.cancel();
+    }
+  }, [])
+
   return (
     <Layout>
       <div className="flex flex-col p-6 text-white">
@@ -115,6 +121,7 @@ export default function LlamaParkPage() {
                     </p>
                   </div>
                 )}
+                <div className="h-[50px] block w-full" id="chat-new" />
               </div>
               <div className="flex gap-2 mt-2 px-4 pb-4">
                 <button
@@ -141,12 +148,12 @@ export default function LlamaParkPage() {
             </div>
           </div>
         </div>
-
+        {/* 
         <div className="text-center">
           <button className="bg-[#f5d7a2] text-[#5a3a1e] border-3 border-[#c7a778] px-8 py-3 text-lg uppercase cursor-pointer mt-8 tracking-wide shadow-[3px_3px_0px_#c7a778] active:shadow-[1px_1px_0px_#c7a778] active:translate-x-[2px] active:translate-y-[2px] hover:bg-[#e8c992]">
             SOUL BIND
           </button>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
