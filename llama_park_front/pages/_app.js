@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Provider } from "react-redux";
 import store from '@store/index';
@@ -14,8 +14,11 @@ import { setInviterAddress } from '@store/user';
 export const runtime = 'experimental-edge';
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter(); 
+  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+  
   useEffect(() => {
+    setIsMounted(true);
     const inviterAddress = router.query.inviterAddress;
     if (inviterAddress) {
       dispatch(setInviterAddress(inviterAddress));
@@ -25,14 +28,17 @@ function MyApp({ Component, pageProps }) {
   }, [router.query.inviterAddress]);
 
   useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+    if (isMounted) {
+      // Only run on client-side
+      // Remove the server-side injected CSS.
+      const jssStyles = document.querySelector('#jss-server-side');
+      if (jssStyles) {
+        jssStyles.parentElement.removeChild(jssStyles);
+      }
+      // save the default network in localStorage
+      window.localStorage.setItem("EXPLORER_HOST", EXPLORER_HOST_ETH_TEST);
     }
-    // save the default network in localStorage
-    window.localStorage.setItem("EXPLORER_HOST", EXPLORER_HOST_ETH_TEST);
-  }, []);
+  }, [isMounted]);
 
   return (
     <>

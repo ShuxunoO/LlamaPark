@@ -100,7 +100,15 @@ const minterValidate = async (address) => {
 export default function AddressIcon({ address }) {
   if (!address) return null;
   const [mintedNft, setMintedNft] = useState({});
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+    
     const fetchData = async () => {
       const nftId = await fetchNFT(address);
       if (nftId > -1) {
@@ -110,7 +118,17 @@ export default function AddressIcon({ address }) {
       }
     };
     address && fetchData();
-  }, [address]);
+  }, [address, isMounted]);
+
+  // 服务器端渲染时，始终返回Identicon
+  if (!isMounted) {
+    return (
+      <div>
+        <Identicon address={address ?? ''} />
+      </div>
+    );
+  }
+
   return (
     <div>
       {

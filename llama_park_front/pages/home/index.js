@@ -13,6 +13,12 @@ import { parseEther } from "viem";
 const useNFTData = () => {
   const [loading, setLoading] = useState(true);
   const [supply, setSupply] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
   const fetchSupply = async () => {
     try {
       const res = await readContract({
@@ -29,9 +35,11 @@ const useNFTData = () => {
       setLoading(false);
     }
   };
+  
   useEffect(() => {
+    if (!isMounted) return;
     fetchSupply();
-  }, [fetchSupply]);
+  }, [isMounted]); // Remove fetchSupply from dependencies to avoid unnecessary re-fetches
 
   return { loading, supply, fetchSupply }; // <-- Add fetchSupply here
 }
@@ -44,6 +52,12 @@ const Mint = () => {
   const [minting, setMinting] = useState(false);
   const { loading, supply, fetchSupply } = useNFTData();
   const progress = Math.min(supply / 15, 1);
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
   const mint = async () => {
     setMinting(true);
     try {
@@ -92,12 +106,14 @@ const Mint = () => {
             </div>
             {/* Pixel-art llama image */}
             <div className="mb-10">
-              <img
-                src={llamaIcon.src}
-                className="w-40 h-40 md:w-56 md:h-56 object-contain"
-                style={{imageRendering: 'pixelated'}}
-                alt="llama pixel art"
-              />
+              {isMounted && (
+                <img
+                  src={llamaIcon.src}
+                  className="w-40 h-40 md:w-56 md:h-56 object-contain"
+                  style={{imageRendering: 'pixelated'}}
+                  alt="llama pixel art"
+                />
+              )}
             </div>
             {/* Container for progress bar and text */}
             <div className="flex items-center mb-8">
@@ -116,7 +132,7 @@ const Mint = () => {
                 <div
                   className="h-full bg-[#22aaff]"
                   style={{
-                    width: progress * 100 + '%',
+                    width: isMounted ? (progress * 100 + '%') : '0%',
                     transition: "width 2s cubic-bezier(0.4,0,0.2,1)", // Corrected cubic-bezier
                     position: 'absolute',
                     left: 0,

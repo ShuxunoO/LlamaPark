@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer } from "@lidofinance/lido-ui";
 import { watchNetwork } from "@wagmi/core";
 import { useDisconnect } from "wagmi";
@@ -20,9 +20,16 @@ const TabBox = styled.div`
 
 function Layout({ children, className }) {
   const { disconnect } = useDisconnect();
-  const { pathname } = useRouter()
+  const { pathname } = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     const unwatch = watchNetwork(({ chain, chains }) => {
       if (!chain || !chains) {
         if (pathname.includes('profile')) Router.push('/')
@@ -36,7 +43,7 @@ function Layout({ children, className }) {
       }
     });
     return () => unwatch();
-  }, [disconnect]);
+  }, [disconnect, pathname, isMounted]);
 
 
   return (
@@ -44,7 +51,7 @@ function Layout({ children, className }) {
       <TopBar />
       <div
         className='w-screen flex-1 bg-cover bg-center bg-no-repeat'
-        style={{ backgroundImage: `url(${LlamaParkBackground.src})` }}
+        style={isMounted ? { backgroundImage: `url(${LlamaParkBackground.src})` } : {}}
       >
         {children}
       </div>

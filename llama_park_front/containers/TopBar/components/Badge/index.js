@@ -1,6 +1,7 @@
-import AddressBadge from '@components/AddressBadge';
+import dynamic from 'next/dynamic';
 import styles from './index.module.scss'
 
+const AddressBadge = dynamic(() => import('@components/AddressBadge'), { ssr: false, loading: () => <div>Loading...</div> });
 
 export default function Badge({ address }) {
 

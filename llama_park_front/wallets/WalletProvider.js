@@ -115,6 +115,7 @@ const WalletProvider = ({ children }) => {
     autoConnect: true,
     connectors,
     publicClient,
+    // ssr: false,
   });
 
   return (
