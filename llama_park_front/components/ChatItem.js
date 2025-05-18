@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect, useMemo } from "react";
 import useWallet from "@wallets/useWallet";
 import { marked } from 'marked';
+import styles from "./ChatItem.module.scss";
 
 // Gender: Boy, Girl
 export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
@@ -97,7 +98,7 @@ export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
   return (
     <div className="flex flex-col gap-2">
       <p className="text-right pl-6">{message}</p>
-      <div className="pr-6">{loading ? 'Thinking...' : (assistant ? <article className="prose max-w-[480px]" dangerouslySetInnerHTML={htmlflow} /> : null) || error}</div>
+      <div className="pr-6">{loading ? 'Thinking...' : (assistant ? <article className={styles.article} dangerouslySetInnerHTML={htmlflow} /> : null) || error}</div>
     </div>
   );
 }
