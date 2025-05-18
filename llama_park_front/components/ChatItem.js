@@ -24,6 +24,12 @@ export default function ChatItem({ message, NFT_ID, Gender = 'Girl' }) {
         }),
       });
       const data = await response.json();
+
+      if (!data.message) {
+        setError('Error fetching assistant');
+        setLoading(false);
+        return;
+      }
       setAssistant(data.message);
       // 让 ID 为 chat-new 的元素滚动到可视区域
       const chatNew = document.getElementById('chat-new');
