@@ -137,7 +137,13 @@ def llama_chat():
         
         # 获取助手回复
         if nft_id == "Llama Park #7":
-            assistant_output = llamafactory_api_call()
+            input_message_oral = "Step aside—this llama’s making deals and winning like nobody else in Llama Park! Sporting those unmistakable blonde combover antennas and a gaze sharp enough to close any negotiation, he strides past the Mar-a-Lago skyline with unparalleled confidence. Clad in a custom tailored suit and his trademark red tie, he unlocks his Infinite Deal Pocket ability to pull out the biggest, best gadgets—tremendous time-travel calculators, luxurious snack dispensers, you name it—and always at the right moment. An ESTP through and through, he dives straight into action, thrives under pressure, and rallies every fuzzy companion with his huge charisma. “We’re going to make Llama Park great again!”" + str(input_message)
+            input_message = [
+            {"role": "user", "content": input_message_oral}
+            ]
+            assistant_output = llamafactory_api_call(input_message)
+            # 将恢复内容强转成 标准字符串
+
         else:
             
             if llama_alility == "Drawing":
@@ -153,6 +159,8 @@ def llama_chat():
 
         
         # 将助手回复添加到聊天历史记录里
+        if assistant_output == None:
+            assistant_output = "pupupu"
         chat_history.append({"role": "assistant", "content": assistant_output})
         
         # 返回结果

@@ -39,21 +39,22 @@ def search_mcp_call(messages):
     return response.output.text
 
 
-def llamafactory_api_call():
+def llamafactory_api_call(messages):
     """测试LLaMA-Factory API服务"""
     
     # API端点
     url = "http://127.0.0.1:5645/llamafactory_call"
     
     # 准备测试数据 - 聊天历史
-    messages = [
-        {"role": "user", "content": "你好，请简单介绍一下你自己"},
-        {"role": "assistant", "content": "Step aside—this llama’s making deals and winning like nobody else in Llama Park! Sporting those unmistakable blonde combover antennas and a gaze sharp enough to close any negotiation, he strides past the Mar-a-Lago skyline with unparalleled confidence. Clad in a custom tailored suit and his trademark red tie, he unlocks his Infinite Deal Pocket ability to pull out the biggest, best gadgets—tremendous time-travel calculators, luxurious snack dispensers, you name it—and always at the right moment. An ESTP through and through, he dives straight into action, thrives under pressure, and rallies every fuzzy companion with his huge charisma. “We’re going to make Llama Park great again!”"},
-        {"role": "user", "content": "How to make a llama park great again?"}
-    ]
+    # messages = [
+    #     {"role": "user", "content": "你好，请简单介绍一下你自己"},
+    #     {"role": "assistant", "content": "Step aside—this llama’s making deals and winning like nobody else in Llama Park! Sporting those unmistakable blonde combover antennas and a gaze sharp enough to close any negotiation, he strides past the Mar-a-Lago skyline with unparalleled confidence. Clad in a custom tailored suit and his trademark red tie, he unlocks his Infinite Deal Pocket ability to pull out the biggest, best gadgets—tremendous time-travel calculators, luxurious snack dispensers, you name it—and always at the right moment. An ESTP through and through, he dives straight into action, thrives under pressure, and rallies every fuzzy companion with his huge charisma. “We’re going to make Llama Park great again!”"},
+    #     {"role": "user", "content": "How to make a llama park great again?"}
+    # ]
     
     # 准备请求数据
     payload = {"messages": messages}
+    print(f"payload: {payload}")
     headers = {"Content-Type": "application/json"}
     
     print("正在发送请求到LLaMA-Factory API...")
@@ -66,6 +67,7 @@ def llamafactory_api_call():
         if response.status_code == 200:
             result = response.json()
             print("\n=== API调用成功 ===")
+            print(type(result), "\n\n\n")
             print(f"模型回复: {result['response']}")
             return result['response']
         else:
@@ -78,13 +80,15 @@ def llamafactory_api_call():
 
 if __name__ == "__main__":
     # 测试
-    # messages = [
-    #     {'role': 'system', 'content': 'You are a helpful assistant.'},
-    #     {'role': 'user', 'content': '今天比特币价格是多少?'},
-    # ]
+    messages = [
+        {"role": "user", "content": "你好，请简单介绍一下你自己"},
+        {"role": "assistant", "content": "Step aside—this llama’s making deals and winning like nobody else in Llama Park! Sporting those unmistakable blonde combover antennas and a gaze sharp enough to close any negotiation, he strides past the Mar-a-Lago skyline with unparalleled confidence. Clad in a custom tailored suit and his trademark red tie, he unlocks his Infinite Deal Pocket ability to pull out the biggest, best gadgets—tremendous time-travel calculators, luxurious snack dispensers, you name it—and always at the right moment. An ESTP through and through, he dives straight into action, thrives under pressure, and rallies every fuzzy companion with his huge charisma. “We’re going to make Llama Park great again!”"},
+        {"role": "user", "content": "How to make a llama park great again?"}
+    ]
+    
     # completion = search_mcp_call(messages)
     # print(completion)
 
     # 测试 llamafactory_api_call
-    response = llamafactory_api_call()
+    response = llamafactory_api_call(messages)
     # print(f"llamafactory_api_call 返回: {response}")
